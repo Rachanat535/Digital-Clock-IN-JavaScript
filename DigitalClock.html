@@ -1,0 +1,78 @@
+<DOCTYPE html>
+<html>
+    <head>
+        <title> Digital clock in JS</title>
+        <link rel="stylesheet" href="styles.css"> 
+    </head>
+    <body>
+        <div id = "clock" >
+            <div id = "today"> Today is </div>
+            <div id = "date" class="container"> </div>
+
+            <div id="time">
+                <div><span id = "hour"> </span> <span> Hours </span> </div>
+                <div><span id = "minute"> </span> <span> Minutes </span> </div>
+                <div><span id = "second"> </span> <span> Seconds </span> </div>
+                <div><span id = "session"> </span> <span> Session </span> </div>
+                
+            </div>
+        </div>
+    
+        <script type="text/javascript">
+            function showTime(){
+                // for date
+                var date = new Date(); 
+                var year = date.getYear();
+                    if (year < 1000){
+                    year += 1900; 
+                }
+
+                var day = date.getDay();
+                var month = date.getMonth();
+                var daym = date.getDate();
+
+                var dayArray = new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
+                var monthArray = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+                
+                var myClock = document.getElementById("date");
+                myClock.textContent = ""  + dayArray[day] + " "+daym+ " "+monthArray[month]+ " "+year;
+                myClock.innerText = ""  + dayArray[day] + " "+daym+ " "+monthArray[month]+ " "+year;
+
+                // for time
+                var date = new Date(); //creating an object of Date class
+                var hour = date.getHours(); // This will return 0 - 23
+                var minute = date.getMinutes(); // This will return 0 - 59
+                var second = date.getSeconds(); // This will return 0-59
+                var session = "AM";
+
+                if( hour == 0){
+                    hour = 12;
+                }
+                if (hour > 12){
+                    hour = hour - 12;
+                    session = "PM";
+                }
+                hour = (hour < 10) ? "0" + hour : hour;
+                minute = (minute < 10) ? "0" + minute : minute;
+                second = (second < 10) ? "0" + second : second;
+
+                var timeHour = hour;
+                var timeMinute = minute;
+                var timeSecond = second;
+                var timeSession = session;
+                
+
+                document.getElementById("hour").innerHTML = timeHour;
+                document.getElementById("hour").innerHTML = timeHour;
+                document.getElementById("minute").innerHTML = timeMinute;
+                document.getElementById("second").innerHTML = timeSecond;
+                document.getElementById("session").innerHTML = timeSession;
+            
+
+                setTimeout(showTime, 1000);
+            }
+            showTime();
+            
+        </script>
+    </body>
+</html>
